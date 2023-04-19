@@ -1,148 +1,150 @@
+const searchBtn = $(".search");
+const zipCode = $("#zip-code");
+const result = $(".result");
 
-const searchBtn = document.querySelector(".search");
-const zipCode = document.getElementById("zip-code");
-const result = document.querySelector(".result");
-
-searchBtn.addEventListener('click', () => {
-    const query = zipCode.value.substr(0, 5); // extract first five digits of the zip code
+searchBtn.on('click', () => {
+    const query = zipCode.val().substr(0, 5); // extract first five digits of the zip code
     $.get(`https://api.openbrewerydb.org/v1/breweries?by_postal=${query}&per_page=20`, (data)=>{
-        result.innerHTML = "";
+        result.html("");
         const breweries = data.filter(brewery => brewery.postal_code.substr(0, 5) === query)
                               .map(brewery => brewery.name);
         if (breweries.length === 0) {
-            const image = document.createElement('img')
-            image.src="sadRon.png";
-            result.innerHTML = ""
-            result.appendChild(image)
-        } else {
-            const ul = document.createElement('ul');
-            breweries.forEach(name => {
-                const li = document.createElement('li');
-                li.innerText = name;
-                ul.appendChild(li);
+            const image = $('<img>').attr('src', 'sadRon.png');
+            result.html("");
+            result.append(image);
+        }else {
+          const ul = $('<ul>');
+          const image = $('<img>').attr('src', 'https://media.tenor.com/i1MnpOuskr4AAAAC/parks-and-rec-ron-swanson.gif').attr('width', '500').attr('height', '300');
+          breweries.forEach(name=>{
+              const li=$('<li>').text(name);
+              ul.append(li);
             });
-            city.value="";
-            state.value="";
-            result.appendChild(ul);
+            city.val("");
+            state.val("");
+            result.append(image);
+            result.append(ul);
         }
     });
 });
 
-const stateSearchBtn=document.querySelector(".searchState");
-const state = document.getElementById("state");
-const stateResult = document.querySelector(".stateResult")
+const stateSearchBtn=$(".searchState");
+const state = $("#state");
+const stateResult = $(".stateResult");
 
-stateSearchBtn.addEventListener('click', () => {
-    const query = state.value; // extract first five digits of the zip code
+stateSearchBtn.on('click', () => {
+    const query = state.val();
     $.get(`https://api.openbrewerydb.org/v1/breweries?by_state=${query}&per_page=20`, (data)=>{
-        result.innerHTML = "";
+        stateResult.html("");
         const breweries = data.filter(brewery => brewery.state_province === query)
                               .map(brewery => brewery.name);
         if (breweries.length === 0) {
-            const img = document.createElement('img');
-            img.src = "sadRon.png";
-            cityResult.innerHTML = ""; // clear the cityResult element
-            cityResult.appendChild(img); 
-        } else {
-            const ul = document.createElement('ul');
-            breweries.forEach(name => {
-                const li = document.createElement('li');
-                li.innerText = name;
-                ul.appendChild(li);
+          const img = $('<img>').attr('src', 'sadRon.png');
+          stateResult.html("");
+          stateResult.append(img);
+         }else {
+            const ul = $('<ul>');
+            const image = $('<img>').attr('src', 'https://media.tenor.com/i1MnpOuskr4AAAAC/parks-and-rec-ron-swanson.gif').attr('width', '500').attr('height', '300');
+            breweries.forEach(name=>{
+                const li=$('<li>').text(name);
+                ul.append(li);
             });
-            city.value="";
-            zipCode.value="";
-            result.appendChild(ul);
+            city.val("");
+            zipCode.val("");
+            stateResult.append(image);
+            stateResult.append(ul);
         }
     });
 });
-const citySearchBtn = document.querySelector(".searchCity")
-const city = document.getElementById("city");
-const cityResult = document.querySelector(".cityResult")
-citySearchBtn.addEventListener('click', ()=>{
-    const query = city.value
+
+const citySearchBtn = $(".searchCity");
+const city = $("#city");
+const cityResult = $(".cityResult");
+
+citySearchBtn.on('click', ()=>{
+    const query = city.val();
     $.get(`https://api.openbrewerydb.org/v1/breweries?by_city=${query}&per_page=20`, (data)=>{
-        result.innerHTML="";
+        cityResult.html("");
         const breweries = data.filter(brewery => brewery.city === query)
-                                .map(brewery=> brewery.name);
-            if (breweries.length === 0) {
-            const img = document.createElement('img');
-            img.src = "sadRon.png";
-            cityResult.innerHTML = ""; // clear the cityResult element
-            cityResult.appendChild(img); 
-            }
-            else {
-                const ul = document.createElement('ul')
-                breweries.forEach(name=>{
-                    const li=document.createElement('li');
-                    li.innerText = name;
-                    ul.appendChild(li);
-                })
-                zipCode.value="";
-                state.value="";
-                result.appendChild(ul);
-            }
-    })
-})
-const clearBtn = document.querySelector(".clear");
-clearBtn.addEventListener('click', ()=> {
-    city.value="";
-    document.getElementsByClassName("searchByZip")[0].style.display="none"
-    document.getElementsByClassName("searchByState")[0].style.display="none"
-    document.getElementsByClassName("searchByCity")[0].style.display="none"
-    zipCode.value="";
-    state.value="";
-    result.innerHTML = "";
+                              .map(brewery=> brewery.name);
+        if (breweries.length === 0) {
+          const img = $('<img>').attr('src', 'sadRon.png');
+          cityResult.html("");
+          cityResult.append(img);
+        }
+        else {
+            const ul = $('<ul>');
+            const image = $('<img>').attr('src', 'https://media.tenor.com/i1MnpOuskr4AAAAC/parks-and-rec-ron-swanson.gif').attr('width', '500').attr('height', '300');
+            breweries.forEach(name=>{
+                const li=$('<li>').text(name);
+                ul.append(li);
+            });
+            zipCode.val("");
+            state.val("");
+            cityResult.append(image);
+            cityResult.append(ul);
+        }
+    });
+});
 
-})
+const clearBtn = $(".clear");
+clearBtn.on('click', ()=> {
+    city.val("");
+    $(".searchByZip").eq(0).css("display","none");
+    $(".searchByState").eq(0).css("display","none");
+    $(".searchByCity").eq(0).css("display","none");
+    zipCode.val("");
+    state.val("");
+    result.html("");
+});
 
+//add an eventlistner to each of the names that
 //add an eventlistner to each of the names that appears and have the entire data appear to the right (twiddler)
 //add cool background
 //see if you can add images or a map that pulls in their address
-
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+$(document).ready(function() {
+  function myFunction() {
+    $('#myDropdown').toggleClass('show');
   }
-  
   function filterFunction() {
     var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
+    input = $('#myInput');
+    filter = input.val().toUpperCase();
+    div = $('#myDropdown');
+    a = div.find('a');
     for (i = 0; i < a.length; i++) {
       txtValue = a[i].textContent || a[i].innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
+        $(a[i]).show();
       } else {
-        a[i].style.display = "none";
+        $(a[i]).hide();
       }
     }
   }
-  const zipCodeLink = document.querySelector('a[href="#zipCodeSearchLink"]');
 
-  zipCodeLink.addEventListener('click', function() {
-    document.getElementsByClassName("searchByState")[0].style.display="none"
-    document.getElementsByClassName("searchByCity")[0].style.display="none"
-    const zipCodeSearchDiv = document.querySelector('#zipCodeSearchDiv');
-    zipCodeSearchDiv.style.display = 'block';
+  const zipCodeLink = $('a[href="#zipCodeSearchLink"]');
+
+  zipCodeLink.click(function() {
+    $('.searchByState').hide();
+    $('.searchByCity').hide();
+    const zipCodeSearchDiv = $('#zipCodeSearchDiv');
+    zipCodeSearchDiv.show();
   });
 
-  const stateLink= document.querySelector('a[href="#stateSearchLink"]');
+  const stateLink = $('a[href="#stateSearchLink"]');
 
-  stateLink.addEventListener('click', function() {
-    document.getElementsByClassName("searchByZip")[0].style.display="none"
-    document.getElementsByClassName("searchByCity")[0].style.display="none"
-    const stateSearchDiv = document.querySelector('#stateSearchDiv');
-    stateSearchDiv.style.display = 'block';
+  stateLink.click(function() {
+    $('.searchByZip').hide();
+    $('.searchByCity').hide();
+    const stateSearchDiv = $('#stateSearchDiv');
+    stateSearchDiv.show();
   });
-  const cityLink = document.querySelector('a[href="#citySearchLink"]');
 
-  cityLink.addEventListener('click', function() {
-    document.getElementsByClassName("searchByZip")[0].style.display="none"
-    document.getElementsByClassName("searchByState")[0].style.display="none"
-    const citySearchDiv = document.querySelector('#citySearchDiv');
-    citySearchDiv.style.display = 'block';
+  const cityLink = $('a[href="#citySearchLink"]');
+
+  cityLink.click(function() {
+    $('.searchByZip').hide();
+    $('.searchByState').hide();
+    const citySearchDiv = $('#citySearchDiv');
+    citySearchDiv.show();
   });
+});
