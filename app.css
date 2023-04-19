@@ -1,5 +1,8 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url('lagavulin copy.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
   }
   
   .navbar {
@@ -66,12 +69,28 @@ body {
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  .searchByZip{
+.searchByZip{
     display: none;
+    text-align: left;
   }
 .searchByState{
     display: none;
+    text-align: left;
 }
 .searchByCity{
     display:none;
+    text-align: left;
+}
+#quote {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+#quote {
+  color: rgb(76, 24, 24);
+  font-size: 16px;
+}
+#resultsBody{
+  z-index: 1;
+  text-align: right;
 }
