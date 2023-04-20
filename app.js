@@ -16,24 +16,26 @@ const quotes = [`That is a canvas sheet—the most versatile object known to man
 `Any dog under fifty pounds is a cat and cats are useless.`,
 `I would rather bleed out than sit here and talk about my feelings for 10 minutes.`];
 
-const quoteElem = document.getElementById("quote");
+const quoteElem = $('#quote');
 
 function getRandomQuote() {
-  const quoteTag = document.createElement("p")
+  const quoteTag = $('<p>');
   const randomNumber = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomNumber];
 
-  quoteTag.innerText=quote;
+  quoteTag.text(quote);
   quoteElem.append(quoteTag);
-  console.log(quoteTag)
+  console.log(quoteTag);
 }
+
 
 const searchBtn = $(".search");
 const zipCode = $("#zip-code");
 const result = $(".result");
 
 searchBtn.on('click', () => {
-    const query = zipCode.val().substr(0, 5); // extract first five digits of the zip code
+    const query = zipCode.val().substr(0, 5);
+    $(".homePage").css("display","none")
     $.get(`https://api.openbrewerydb.org/v1/breweries?by_postal=${query}&per_page=20`, (data)=>{
         result.html("");
         const breweries = data.filter(brewery => brewery.postal_code.substr(0, 5) === query)
@@ -52,7 +54,17 @@ searchBtn.on('click', () => {
               const clickedBreweryName = li.text();
               const clickedBreweryData = data.filter(brewery => brewery.name === clickedBreweryName)[0];
               const breweryDiv = $('<div>');
-              breweryDiv.text(`${clickedBreweryData.name}, ${clickedBreweryData.city}, ${clickedBreweryData.state}`);
+              breweryDiv.html(clickedBreweryData.name+ "<br>" + "<br>"+               
+              "Brewery Type: "+clickedBreweryData.brewery_type + "<br>" + "<br>"+ 
+              clickedBreweryData.address_1+ "<br>" + "<br>"+ 
+              clickedBreweryData.city + ", " + 
+              clickedBreweryData.state+ ", " + 
+              clickedBreweryData.postal_code+ "<br>" + "<br>"+ 
+              "Phone Number: "+clickedBreweryData.phone+ "<br>" + "<br>"+ 
+              "Website: <a href='" + clickedBreweryData.website_url + "' target='_blank'>" + clickedBreweryData.website_url + "</a>"+
+              "<br>"+"<br>");
+              $(".clickedBreweryHeader").css("display","block")
+              clickedBrewery.children().remove();
               clickedBrewery.append(breweryDiv);
             })
         });
@@ -71,6 +83,7 @@ const stateResult = $(".stateResult");
 
 stateSearchBtn.on('click', () => {
     const query = state.val();
+    $(".homePage").css("display","none")
     $.get(`https://api.openbrewerydb.org/v1/breweries?by_state=${query}&per_page=20`, (data)=>{
         stateResult.html("");
         const breweries = data.filter(brewery => brewery.state_province === query)
@@ -89,13 +102,25 @@ stateSearchBtn.on('click', () => {
                 const clickedBreweryName = li.text();
                 const clickedBreweryData = data.filter(brewery => brewery.name === clickedBreweryName)[0];
                 const breweryDiv = $('<div>');
-                breweryDiv.text(`${clickedBreweryData.name}, ${clickedBreweryData.city}, ${clickedBreweryData.state}`);
+                breweryDiv.html(clickedBreweryData.name+ "<br>" + "<br>"+               
+                "Brewery Type: "+clickedBreweryData.brewery_type + "<br>" + "<br>"+ 
+                  clickedBreweryData.address_1 + "<br>" + "<br>"+ 
+                  clickedBreweryData.city + ", " + 
+                  clickedBreweryData.state+ ", " + 
+                  clickedBreweryData.postal_code+ "<br>" + "<br>"+ 
+                  "Phone Number: "+clickedBreweryData.phone+ "<br>" + "<br>"+ 
+                  "Website: <a href='" + clickedBreweryData.website_url + "' target='_blank'>" + clickedBreweryData.website_url + "</a>"+
+                  "<br>"+"<br>");
+                  $(".clickedBreweryHeader").css("display","block")
+                  clickedBrewery.children().remove();
                 clickedBrewery.append(breweryDiv);
               })
+              
           });
             city.val("");
             zipCode.val("");
             stateResult.append(image);
+            getRandomQuote();
             stateResult.append(ul);
         }
     });
@@ -108,6 +133,7 @@ const clickedBrewery=$(".clickedBrewery")
 
 citySearchBtn.on('click', ()=>{
     const query = city.val();
+    $(".homePage").css("display","none")
     $.get(`https://api.openbrewerydb.org/v1/breweries?by_city=${query}&per_page=20`, (data)=>{
         cityResult.html("");
         const breweries = data.filter(brewery => brewery.city === query)
@@ -127,28 +153,66 @@ citySearchBtn.on('click', ()=>{
                   const clickedBreweryName = li.text();
                   const clickedBreweryData = data.filter(brewery => brewery.name === clickedBreweryName)[0];
                   const breweryDiv = $('<div>');
-                  breweryDiv.text(`${clickedBreweryData.name}, ${clickedBreweryData.city}, ${clickedBreweryData.state}`);
+                  breweryDiv.html(clickedBreweryData.name  + "<br>" + "<br>"+ 
+                    "Brewery Type: "+clickedBreweryData.brewery_type + "<br>" + "<br>"+ 
+                    clickedBreweryData.address_1 + "<br>" + "<br>"+ 
+                    clickedBreweryData.city + ", " + 
+                    clickedBreweryData.state+ ", " + 
+                    clickedBreweryData.postal_code+ "<br>" + "<br>"+ 
+                    "Phone Number: "+clickedBreweryData.phone+ "<br>" + "<br>"+ 
+                    "Website: <a href='" + clickedBreweryData.website_url + "' target='_blank'>" + clickedBreweryData.website_url + "</a>"+
+                    "<br>"+"<br>");
+                    $(".clickedBreweryHeader").css("display","block")
+                    clickedBrewery.children().remove();
                   clickedBrewery.append(breweryDiv);
                 })
             });
             zipCode.val("");
             state.val("");
             cityResult.append(image);
+            getRandomQuote();
             cityResult.append(ul);
         }
     });
 });
 
 const clearBtn = $(".clear");
+
 clearBtn.on('click', ()=> {
-    city.val("");
-    $(".searchByZip").eq(0).css("display","none");
-    $(".searchByState").eq(0).css("display","none");
-    $(".searchByCity").eq(0).css("display","none");
-    zipCode.val("");
-    state.val("");
-    result.html("");
+  $(".homePage").css("display","flex")
+  city.val("");
+  $(".searchByZip").eq(0).css("display","none");
+  $(".searchByState").eq(0).css("display","none");
+  $(".searchByCity").eq(0).css("display","none");
+  zipCode.val("");
+  state.val("");
+  result.html("");
+  cityResult.html("");
+  stateResult.html("")
+  $('.quote').empty();
+  $('.clickedBrewery').html("")
+  $(".clickedBreweryHeader").css("display","none")
 });
+
+const homePage = $("#homePage");
+
+homePage.on('click',()=>{
+  console.log("Home link clicked!");  
+  $(".homePage").css("display","flex")
+  city.val("");
+  $(".searchByZip").eq(0).css("display","none");
+  $(".searchByState").eq(0).css("display","none");
+  $(".searchByCity").eq(0).css("display","none");
+  zipCode.val("");
+  state.val("");
+  result.html("");
+  cityResult.html("");
+  stateResult.html("")
+  $('.quote').empty();
+  $('.clickedBrewery').html("")
+  $(".clickedBreweryHeader").css("display","none")
+
+})
 
 $(document).ready(function() {
   function myFunction() {

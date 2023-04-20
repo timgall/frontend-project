@@ -1,68 +1,88 @@
 <!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale1.0"/>
-        <title>Document</title>
-        <script 
-        src="https://code.jquery.com/jquery-3.6.4.min.js" 
-        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" 
-        crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet"type="text/css"href="app.css"></script>
-        <script defer src="app.js"></script>
-    </head>
-    <body> 
-        <h1>Locate Your Closest Brewery</h1>
-        <div class="navbar">
-            <a href="#home">Home</a>
-            <a href="#news">News</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#help">Help</a>
-            <div class="clearButton">
-            <button class="clear">Clear Results</button>
-            <div class="clearResults"></div>
-            <div class="dropdown">
-              <button class="dropbtn">Search For Breweries
-                <i class="fa fa-caret-down"></i>
-              </button>
-              <div class="dropdown-content">
-                <a href="#zipCodeSearchLink">Zip-Code</a>
-                <a href="#stateSearchLink">State</a>
-                <a href="#citySearchLink">City</a>
-              </div>
-            </div> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="pageHeader">Locate Your Closest Brewery</header>
+    <div class="navbar">
+      <a href="#home" id="homePage">Home</a>
+      <a href="https://www.craftbeer.com/category/news"target="_blank">News</a>
+      <a href="https://untappd.com/"target="_blank">Reviews</a>
+      <a href="https://www.youtube.com/@WillSwinson" target="_blank">Help</a>
+        <div class="dropdown">
+          <button class="dropbtn">Search For Breweries
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#zipCodeSearchLink">Zip-Code</a>
+            <a href="#stateSearchLink">State</a>
+            <a href="#citySearchLink">City</a>
           </div>
         </div>
-  <div id="quote" class="quote"></div>   
-    <div id="zipCodeSearchDiv" class="searchByZip" style="display:none;">
+        <div class="searchBar">
+          <div id="zipCodeSearchDiv" class="searchByZip" style="display:none;">
             <label for="zip-code">Enter a Zip Code:</label>
-            <input type="text" id="zip-code">
+            <input type="text" id="zip-code" />
             <button class="search">Search</button>
-            <div class="result"></div>
           </div>
-    <div id="stateSearchDiv" class="searchByState">
+          <div id="stateSearchDiv" class="searchByState"style="display:none;">
             <label for="state">Enter a State:</label>
-            <input type="text" id="state">
+            <input type="text" id="state" />
             <button class="searchState">Search</button>
-            <div class="stateResult"></div>
-    </div>
-    <div id="citySearchDiv" class="searchByCity">
+
+          </div>
+          <div id="citySearchDiv" class="searchByCity" style="display:none;">
             <label for="city">Enter a City:</label>
-            <input type="text" id="city">
+            <input type="text" id="city" />
             <button class="searchCity">Search</button>
-            <div class="cityResult"></div>
-    </div>
-    <img src="" class="happyRon" id="happyRon">
-       <div id="selectedResult" class="selectedBrewery">
+
+          </div>
       </div>
+        <div class="clearButton">
+          <button class="clear">Clear Results</button>
+          <div class="clearResults"></div>
+         </div> 
     </div>
-    </body>
-  <body id="resultsBody">
-    <header> Here are the details of the brewery.</header>
-    <div class="container">
-      <div class="clickedBrewery" id="clickedBrewery"></div>
+    <div class="homePage">
+      <div class="homePageHeader">
+      <p>Ahh beer, the drink of peasants.</p>
+      <p>But anything is better than water.</p>
+      <p>To find a brewery near you click to search above.</p>
+      </div>
+      <img src="Classy Ron.jpg" class="classyRon" id="classyRon"/>
     </div>
-   </body>
+    <div class="quote">
+      <div id="quote" class="quote"></div>
+      </div>
+    <div class="happyRon">
+        <img src="" class="happyRon" id="happyRon" />
+        <div class="resultBody">
+            <div class="result"></div>
+            <div class="cityResult"></div>   
+            <div class="stateResult"></div>         
+        </div>
+    </div>
+    <div class="selectedHeader">
+        <header class="clickedBreweryHeader" style="display:none"> Here are the details of the brewery.</header>
+      </div>
+    <div class="selectedBrewery" id="selectedResult">
+      <div class="clickedBrewery" id="clickedBrewery">
+      </div>    
+    </div>  
+  <audio controls autoplay>
+    <source src="11 I'm Shipping up to Boston.m4a" type="audio/x-m4a"/>
+    <source src="06 Beer.m4a" type="audio/x-m4a"/>
+  </audio>
+  </body>
 </html>
