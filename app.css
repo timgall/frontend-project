@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url('lagavulin copy.jpg');
+  background-image: url("lagavulin copy.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -61,52 +61,54 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: left;
-  width:500px;
+  width: 500px;
   color: rgb(1, 1, 1);
-  font-style:italic;
-  font-weight:bold;
+  font-style: italic;
+  font-weight: bold;
   font-size: 18px;
 }
 .selectedResult {
   background-color: white;
   text-align: right;
 }
-.clickedBrewery{
+.clickedBrewery {
   float: right;
   display: flex;
   justify-content: end;
   flex-direction: column;
-  position:absolute;
-  top:150px;
-  right:225px;
+  position: absolute;
+  top: 150px;
+  right: 225px;
   background-color: rgba(255, 255, 255, 0.613);
-  color:rgb(68, 30, 4);
-  font-weight:bold;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  color: rgb(68, 30, 4);
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.clickedBreweryHeader{
+.clickedBreweryHeader {
   float: right;
   display: flex;
   font-size: 18px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight:bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
   justify-content: end;
   flex-direction: column;
-  position:absolute;
-  top:125px;
-  right:225px; 
+  position: absolute;
+  top: 125px;
+  right: 225px;
   background-color: rgba(255, 255, 255, 0.614);
 }
-.result .cityResult .stateResult{
+.result .cityResult .stateResult {
   background-color: white;
   width: 500px;
   text-align: center;
 }
-.searchByZip .searchByCity .searchByState{
-  display:none;
-  color:white;
+.searchByZip .searchByCity .searchByState {
+  display: none;
+  color: white;
 }
-.searchBar{
+.searchBar {
   float: left;
   font-size: 16px;
   color: white;
@@ -114,7 +116,7 @@ body {
   padding: 14px 16px;
   text-decoration: none;
 }
-.clearButton{
+.clearButton {
   float: left;
   font-size: 16px;
   color: white;
@@ -122,17 +124,17 @@ body {
   padding: 14px 16px;
   text-decoration: none;
 }
-.pageHeader{
+.pageHeader {
   text-align: center;
   font-size: 40px;
-  color:darkslategray;
-  font-weight:bold;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: darkslategray;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.resultBody{
+.resultBody {
   background-color: rgba(255, 255, 255, 0.541);
-  width:500px;
-  color:blue;
+  width: 500px;
+  color: blue;
   text-align: center;
 }
 .homePage {
@@ -147,10 +149,11 @@ body {
   text-align: center;
   margin-bottom: 50px;
   font-size: 22px;
-  font-weight:bold;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-style: italic;
-  color:rgb(40, 40, 101);
+  color: rgb(40, 40, 101);
   background-color: rgba(255, 255, 255, 0.353);
 }
 
